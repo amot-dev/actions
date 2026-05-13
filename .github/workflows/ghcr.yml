@@ -2,10 +2,12 @@ on:
   workflow_call:
     inputs:
       image_name:
+        description: 'The image name, as in ghcr.io/{image_name}. Defaults to repository name'
         required: false
         type: string
         default: ${{ github.repository }} 
       build_args:
+        description: 'Passed directly to docker/build-push-action'
         required: false
         type: string
         default: ""

@@ -8,16 +8,49 @@ None so far.
 ## Workflows
 
 
+### [`deploy-docs.yml`](.github/workflows/deploy-docs.yml):
+> Builds a Vitepress documentation site and deploys it via GitHub Pages.
+
+Inputs:
+```yml
+working_directory:
+  description: 'The directory containing the docs and package.json'
+  required: false
+  type: string
+  default: 'docs'
+```
+
+Usage:
+```yml
+name: Deploy Docs
+run-name: Deploy Docs for ${{ github.ref_name }}
+
+on:
+  workflow_dispatch: {}
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy-docs:
+    uses: amot-dev/actions/.github/workflows/deploy-docs.yml@v1
+    with:
+      working_directory: 'docs'
+```
+
+
 ### [`ghcr.yml`](.github/workflows/ghcr.yml):
 > Builds docker images from the top-level directory, tagging them with semantic versioning.
 
 Inputs:
 ```yml
-image_name: # ghcr.io/{image_name}
+image_name:
+  description: 'The image name, as in ghcr.io/{image_name}. Defaults to repository name'
   required: false
   type: string
   default: ${{ github.repository }}
-build_args: # Passed directly to docker/build-push-action
+build_args:
+  description: 'Passed directly to docker/build-push-action'
   required: false
   type: string
   default: ""
@@ -46,10 +79,12 @@ jobs:
 
 Inputs:
 ```yml
-release_body: # Text to parse for issue numbers
+release_body:
+  description: 'The text to parse for issue numbers'
   required: true
   type: string
-tag_name: # Tag that closed these issues
+tag_name:
+  description: 'The tag that closed these issues'
   required: true
   type: string
 ```
