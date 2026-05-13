@@ -56,6 +56,9 @@ tag_name: # Tag that closed these issues
 
 Usage:
 ```yml
+name: Close Issues on Release
+run-name: Close Issues for Release ${{ github.event.release.tag_name || inputs.manual_tag }}
+
 on:
   release:
     types: [published]
