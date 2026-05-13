@@ -63,7 +63,8 @@ run-name: Build version ${{ github.ref_name }} by @${{ github.actor }}
 
 on:
   push:
-    tags: ['v*']
+    tags:
+      - 'v*'
 
 jobs:
   build-ghcr:
