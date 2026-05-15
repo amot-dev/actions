@@ -18,6 +18,11 @@ working_directory:
   required: false
   type: string
   default: 'docs'
+artifact_path:
+  description: 'The output directory to deploy'
+  required: false
+  type: string
+  default: 'dist'
 ```
 
 Usage:
@@ -33,9 +38,10 @@ on:
 
 jobs:
   deploy-docs:
-    uses: amot-dev/actions/.github/workflows/deploy-docs.yml@v1
+    uses: amot-dev/actions/.github/workflows/deploy-docs.yml@v2
     with:
       working_directory: 'docs'
+      artifact_path: 'dist'  # For vitepress, this is '.vitepress/dist'
 ```
 
 
