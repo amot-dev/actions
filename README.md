@@ -38,7 +38,7 @@ on:
 
 jobs:
   deploy-docs:
-    uses: amot-dev/actions/.github/workflows/deploy-docs.yml@v2
+    uses: amot-dev/actions/.github/workflows/deploy-docs.yml@v3
     with:
       working_directory: 'docs'
       artifact_path: 'dist'  # For vitepress, this is '.vitepress/dist'
